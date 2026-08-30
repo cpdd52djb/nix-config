@@ -44,6 +44,7 @@ in {
       isNormalUser = true;
       extraGroups = ["wheel"];
       hashedPassword = cfg.hashedPassword;
+      openssh.authorizedKeys.keys = cfg.sshAuthorizedKeys;
     };
 
     networking.hostName = cfg.hostName;
