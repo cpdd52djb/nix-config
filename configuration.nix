@@ -32,6 +32,10 @@
     settings = {
       experimental-features = ["nix-command" "flakes"];
       auto-optimise-store = true;
+      substituters = [
+        "https://mirror.sjtu.edu.cn/nix-channels/store"
+        "https://cache.nixos.org"
+      ];
     };
     registry.nixpkgs.flake = inputs.nixpkgs;
     gc = {
