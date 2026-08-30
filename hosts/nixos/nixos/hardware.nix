@@ -39,6 +39,9 @@
     espSize = "1G";
   };
 
+  services'.smartd.enable = true;
+  services'.btrfs-scrub.enable = true;
+
   services'.zram = {
     enable = true;
     priority = 5;

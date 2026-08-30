@@ -8,8 +8,6 @@
       enable = true;
       passwordAuthentication = true;
     };
-    btrfs-scrub.enable = true;
-    smartd.enable = true;
     mihomo = {
       enable = true;
       tunMode = true;
