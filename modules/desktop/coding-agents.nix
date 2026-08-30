@@ -19,19 +19,5 @@ in {
       cc = "claude --dangerously-skip-permissions";
       cx = "codex --dangerously-bypass-approvals-and-sandbox";
     };
-
-    hm'.persist' = {
-      directories = [
-        ".claude"
-        ".codex"
-      ];
-
-      files = [
-        {
-          file = ".claude.json";
-          how = "bindmount";
-        }
-      ];
-    };
   };
 }
