@@ -13,6 +13,7 @@
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   hardware'.nvidia.enable = true;
+  boot'.systemd-boot.enable = true;
 
   boot = {
     # 最新主线内核；若 580 legacy 驱动对它编译失败，注释掉这行回退默认内核
@@ -25,10 +26,7 @@
     ];
     extraModulePackages = [];
 
-    loader = {
-      systemd-boot.enable = true;
-      efi.canTouchEfiVariables = true;
-    };
+    loader.efi.canTouchEfiVariables = true;
 
     tmp.cleanOnBoot = true;
   };
