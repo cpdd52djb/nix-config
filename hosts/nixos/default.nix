@@ -14,14 +14,6 @@
     webui = pkgs.zashboard;
   };
 
-  services'.coder = {
-    enable = true;
-    listenAddress = "0.0.0.0:3000";
-    accessUrl = "http://192.168.110.2:3000";
-  };
-
-  services'.postgresql.enable = true;
-
   desktop'.kde.enable = true;
   security'.firewall.enable = true;
 
