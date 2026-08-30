@@ -15,7 +15,7 @@
   systemd.network = {
     enable = true;
     networks."10-wired" = {
-      matchConfig.Name = "en* eth*";
+      matchConfig.Name = "eth0";
       networkConfig.DHCP = "yes";
       linkConfig.RequiredForOnline = "routable";
     };
