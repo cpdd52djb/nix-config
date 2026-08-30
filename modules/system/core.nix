@@ -12,25 +12,25 @@ in {
     hostName = lib.mkOption {
       type = lib.types.str;
       default = hostName;
-      description = "NixOS host name";
+      description = "NixOS 主机名";
     };
 
     timeZone = lib.mkOption {
       type = lib.types.str;
       default = myvars.timeZone;
-      description = "System time zone";
+      description = "系统时区";
     };
 
     hashedPassword = lib.mkOption {
       type = lib.types.str;
       default = myvars.hashedPassword;
-      description = "Hashed password of the primary user";
+      description = "主用户的密码哈希";
     };
 
     sshAuthorizedKeys = lib.mkOption {
       type = lib.types.listOf lib.types.str;
       default = myvars.sshAuthorizedKeys;
-      description = "SSH keys authorized for the primary user";
+      description = "主用户授权的 SSH 公钥";
     };
   };
 
@@ -44,7 +44,7 @@ in {
     networking.hostName = cfg.hostName;
     time.timeZone = lib.mkDefault cfg.timeZone;
 
-    # Add the terminfo database of all known terminals to the system profile.
+    # 把所有已知终端的 terminfo 数据库加入系统 profile
     environment.enableAllTerminfo = lib.mkDefault true;
     documentation.nixos.enable = lib.mkDefault false;
 
