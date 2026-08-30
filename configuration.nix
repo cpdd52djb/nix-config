@@ -11,6 +11,7 @@
   networking.firewall = {
     enable = true;
     allowPing = true;
+    allowedTCPPorts = [9090];
   };
   systemd.network = {
     enable = true;
@@ -91,6 +92,8 @@
   services.mihomo = {
     enable = true;
     configFile = "/var/lib/mihomo/config.yaml";
+    tunMode = true;
+    webui = pkgs.zashboard;
   };
 
   services.displayManager.sddm.enable = true;
