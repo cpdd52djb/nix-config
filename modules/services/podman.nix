@@ -14,6 +14,10 @@ in {
     virtualisation = {
       docker.enable = false;
       oci-containers.backend = "podman";
+
+      # 手动 podman run 短镜像名时默认去 docker.io 拉（容器内已写全限定名，不受此项影响）
+      containers.registries.search = ["docker.io"];
+
       podman = {
         enable = true;
         dockerCompat = true;

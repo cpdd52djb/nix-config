@@ -10,8 +10,8 @@ in {
 
     image = lib.mkOption {
       type = lib.types.str;
-      default = "jc21/nginx-proxy-manager:latest";
-      description = "NPM 容器镜像";
+      default = "docker.io/jc21/nginx-proxy-manager:latest";
+      description = "NPM 容器镜像（podman 必须写全限定名）";
     };
 
     dataDir = lib.mkOption {
