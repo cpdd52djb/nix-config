@@ -77,6 +77,7 @@
       wget
       fastfetch
       just
+      mihomo
     ];
   };
   documentation.nixos.enable = false;
