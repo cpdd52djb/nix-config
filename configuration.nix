@@ -88,6 +88,11 @@
   };
   services.smartd.enable = true;
 
+  services.mihomo = {
+    enable = true;
+    configFile = "/var/lib/mihomo/config.yaml";
+  };
+
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
 
