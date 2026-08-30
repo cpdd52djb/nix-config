@@ -88,8 +88,8 @@
   };
   services.smartd.enable = true;
 
-  # services.displayManager.sddm.enable = true;
-  # services.desktopManager.plasma6.enable = true;
+  services.displayManager.sddm.enable = true;
+  services.desktopManager.plasma6.enable = true;
 
   system.stateVersion = "26.05";
 }
