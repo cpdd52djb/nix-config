@@ -49,7 +49,11 @@
 
     tmp.cleanOnBoot = true;
 
-    kernelParams = ["zswap.enabled=0"];
+    kernelParams = [
+      "audit=0"
+      "net.ifnames=0"
+      "zswap.enabled=0"
+    ];
     kernel.sysctl."vm.swappiness" = 100;
   };
 
