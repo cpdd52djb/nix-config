@@ -6,24 +6,24 @@
   cfg = config.services'.openssh;
 in {
   options.services'.openssh = {
-    enable = lib.mkEnableOption "OpenSSH daemon";
+    enable = lib.mkEnableOption "OpenSSH 守护进程";
 
     port = lib.mkOption {
       type = lib.types.port;
       default = 22;
-      description = "TCP port on which OpenSSH listens";
+      description = "OpenSSH 监听的 TCP 端口";
     };
 
     passwordAuthentication = lib.mkOption {
       type = lib.types.bool;
       default = false;
-      description = "Whether to allow password login";
+      description = "是否允许密码登录";
     };
 
     openFirewall = lib.mkOption {
       type = lib.types.bool;
       default = true;
-      description = "Whether to open the SSH port in the firewall";
+      description = "是否在防火墙中放行 SSH 端口";
     };
   };
 
