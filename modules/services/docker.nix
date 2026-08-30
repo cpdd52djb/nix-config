@@ -30,6 +30,12 @@ in {
 
         daemon.settings = {
           "live-restore" = true;
+          # 宿主机 resolved 的 127.0.0.53 存根在容器里不可达，
+          # docker 会回落到 8.8.8.8（国内不可靠），故显式指定
+          dns = [
+            "223.5.5.5"
+            "119.29.29.29"
+          ];
           "log-driver" = "local";
           "log-opts" = {
             "max-size" = "10m";
