@@ -11,7 +11,7 @@
       inherit specialArgs;
       modules = [
         (import ../modules "nixos")
-        (./. + "/nixos/${hostName}")
+        (./. + "/${hostName}")
       ];
     };
 
@@ -19,9 +19,8 @@
     lib.mapAttrs mkHost
     (lib.filterAttrs (
       hostName: type:
-        type
-        == "directory"
-        && builtins.pathExists (./. + "/nixos/${hostName}/default.nix")
+        type == "directory"
+        && builtins.pathExists (./. + "/${hostName}/default.nix")
     ) (builtins.readDir ./.));
 in {
   nixosConfigurations = mkConfigurations;
