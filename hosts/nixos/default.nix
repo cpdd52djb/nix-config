@@ -14,11 +14,9 @@
     webui = pkgs.zashboard;
   };
 
-  services'.docker.enable = true;
-  services'.nginx-proxy-manager.enable = true;
-
   tools'.mise.enable = true;
   tools'.dev.enable = true;
+  tools'.coding-agents.enable = true;
   shells'.fish.enable = true;
 
   desktop'.kde.enable = true;
