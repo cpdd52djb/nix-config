@@ -38,4 +38,12 @@
     device = "/dev/nvme0n1";
     espSize = "1G";
   };
+
+  services'.zram = {
+    enable = true;
+    priority = 5;
+    algorithm = "zstd";
+    memoryPercent = 100;
+    memoryMax = 16 * 1024 * 1024 * 1024 + (1024 * 1024);
+  };
 }

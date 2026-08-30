@@ -10,7 +10,6 @@
     };
     btrfs-scrub.enable = true;
     smartd.enable = true;
-    zram.enable = true;
     mihomo = {
       enable = true;
       tunMode = true;
