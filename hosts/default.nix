@@ -12,6 +12,17 @@
       modules = [
         ../modules
         (./. + "/${hostName}")
+
+        inputs.home-manager.nixosModules.home-manager
+        {
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            backupFileExtension = "hm-bak";
+            extraSpecialArgs = specialArgs;
+            users.${myvars.username}.imports = [../home];
+          };
+        }
       ];
     };
 
@@ -19,7 +30,8 @@
     lib.mapAttrs mkHost
     (lib.filterAttrs (
       hostName: type:
-        type == "directory"
+        type
+        == "directory"
         && builtins.pathExists (./. + "/${hostName}/default.nix")
     ) (builtins.readDir ./.));
 in {

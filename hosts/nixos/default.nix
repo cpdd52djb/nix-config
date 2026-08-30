@@ -15,6 +15,7 @@
   };
 
   tools'.mise.enable = true;
+  tools'.dev.enable = true;
   shells'.fish.enable = true;
 
   desktop'.kde.enable = true;

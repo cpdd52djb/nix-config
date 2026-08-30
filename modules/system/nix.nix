@@ -7,6 +7,11 @@
   nixpkgs.config.allowUnfree = true;
 
   nix = {
+    # 已使用 flakes，移除 channel 相关工具与配置
+    channel.enable = false;
+
+    optimise.automatic = true;
+
     settings = {
       experimental-features = ["nix-command" "flakes"];
       auto-optimise-store = true;

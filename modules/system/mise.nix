@@ -13,8 +13,9 @@ in {
   config = lib.mkIf cfg.enable {
     environment.systemPackages = [pkgs.mise];
 
-    # 在 fish 交互 shell 中激活 mise；换其他 shell 时改成对应 activate 参数
-    programs.fish.interactiveShellInit = ''
+    # 在主用户的 fish 交互 shell 中激活 mise（经 hm' 走 Home Manager）；
+    # 换其他 shell 时改成对应 activate 参数
+    hm'.programs.fish.interactiveShellInit = ''
       ${lib.getExe pkgs.mise} activate fish | source
     '';
 

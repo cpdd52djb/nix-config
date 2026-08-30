@@ -8,6 +8,11 @@
 }: let
   cfg = config.core';
 in {
+  imports = [
+    # hm' 别名：指向主用户的 Home Manager 配置
+    (lib.mkAliasOptionModule ["hm'"] ["home-manager" "users" myvars.username])
+  ];
+
   options.core' = {
     hostName = lib.mkOption {
       type = lib.types.str;
@@ -48,16 +53,12 @@ in {
     environment.enableAllTerminfo = lib.mkDefault true;
     documentation.nixos.enable = lib.mkDefault false;
 
-    # 服务器基础 CLI 工具
+    # 仅保留 root / 救援场景需要的系统级工具；
+    # 用户级 CLI 一律走 Home Manager（home/common/misc.nix 等）
     environment.systemPackages = with pkgs; [
-      btop
       curl
-      fastfetch
-      git
-      just
       tmux
       vim
-      wget
     ];
   };
 }
