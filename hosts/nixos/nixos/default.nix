@@ -3,16 +3,15 @@
     ./hardware.nix
   ];
 
-  services' = {
-    openssh = {
-      enable = true;
-      passwordAuthentication = true;
-    };
-    mihomo = {
-      enable = true;
-      tunMode = true;
-      webui = pkgs.zashboard;
-    };
+  services'.openssh = {
+    enable = true;
+    passwordAuthentication = true;
+  };
+
+  services'.mihomo = {
+    enable = true;
+    tunMode = true;
+    webui = pkgs.zashboard;
   };
 
   services'.coder = {
