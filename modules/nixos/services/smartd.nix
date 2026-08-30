@@ -7,7 +7,7 @@
   cfg = config.services'.smartd;
 in {
   options.services'.smartd = {
-    enable = lib.mkEnableOption "SMART and NVMe health monitoring";
+    enable = lib.mkEnableOption "SMART 与 NVMe 硬盘健康监控";
   };
 
   config = lib.mkIf cfg.enable {
