@@ -14,6 +14,9 @@
     webui = pkgs.zashboard;
   };
 
+  tools'.mise.enable = true;
+  shells'.fish.enable = true;
+
   desktop'.kde.enable = true;
   security'.firewall.enable = true;
 
