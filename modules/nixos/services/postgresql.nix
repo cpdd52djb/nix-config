@@ -8,12 +8,12 @@
   cfg = config.services'.postgresql;
 in {
   options.services'.postgresql = {
-    enable = lib.mkEnableOption "PostgreSQL service";
+    enable = lib.mkEnableOption "PostgreSQL 数据库服务";
 
     package = lib.mkOption {
       type = lib.types.package;
       default = pkgs.postgresql_18;
-      description = "PostgreSQL package to use";
+      description = "使用的 PostgreSQL 软件包";
     };
   };
 
@@ -36,7 +36,7 @@ in {
         superuser_map      root       postgres
         superuser_map      postgres   postgres
         superuser_map      ${myvars.username}   postgres
-        # Let other names login as themselves
+        # 其余系统用户以同名身份登录
         superuser_map      /^(.*)$    \1
       '';
 
@@ -47,12 +47,12 @@ in {
 
       # https://www.postgresql.org/docs/current/auth-pg-hba-conf.html
       authentication = ''
-        # TYPE  DATABASE        USER            ADDRESS                 METHOD   OPTIONS
+        # 类型    数据库          用户            地址                    认证方式  选项
 
-        # "local" is for Unix domain socket connections only
+        # 本地 Unix domain socket 连接
         local   all             all                                     peer     map=superuser_map
 
-        # Replication connections from localhost
+        # 来自本机的复制连接
         local   replication     all                                     peer     map=superuser_map
 
         # 远程访问默认关闭；需要时打开 enableTCPIP 并按网段放开：

@@ -5,8 +5,7 @@
 }: let
   cfg = config.services'.coder;
 
-  # The upstream option is a "host:port" string; the port is always the
-  # segment after the last colon.
+  # 上游选项是 "host:port" 字符串；端口永远取最后一个冒号之后的段落。
   listenPort = lib.toInt (lib.last (lib.splitString ":" cfg.listenAddress));
 
   loopbackListen =
@@ -15,19 +14,19 @@
     || lib.hasPrefix "[::1]" cfg.listenAddress;
 in {
   options.services'.coder = {
-    enable = lib.mkEnableOption "Coder server";
+    enable = lib.mkEnableOption "Coder 开发工作区服务";
 
     listenAddress = lib.mkOption {
       type = lib.types.str;
       default = "127.0.0.1:3000";
-      description = "Address and port the Coder server listens on; use 0.0.0.0:3000 for direct LAN access";
+      description = "Coder 服务监听的地址与端口；局域网直连用 0.0.0.0:3000";
     };
 
     accessUrl = lib.mkOption {
       type = lib.types.nullOr lib.types.str;
       default = null;
       example = "https://coder.example.com";
-      description = "External URL users use to reach Coder; required for workspace apps and port forwarding";
+      description = "用户访问 Coder 的外部 URL；workspace 应用与端口转发依赖它";
     };
   };
 
@@ -39,8 +38,7 @@ in {
       environment.extra.CODER_TELEMETRY = "false";
     };
 
-    # The upstream unit only orders after network.target, which races with
-    # PostgreSQL init on first boot.
+    # 上游 unit 只 after network.target，与 PostgreSQL 首次初始化存在竞态
     systemd.services.coder = {
       after = ["postgresql.service"];
       requires = ["postgresql.service"];
@@ -51,6 +49,6 @@ in {
     warnings =
       lib.optional
       loopbackListen
-      "services'.coder is enabled with listenAddress ${cfg.listenAddress} on loopback; external clients cannot reach Coder";
+      "services'.coder 已启用，但 listenAddress ${cfg.listenAddress} 只监听回环地址，外部客户端无法访问";
   };
 }
