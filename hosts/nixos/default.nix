@@ -14,6 +14,8 @@
     webui = pkgs.zashboard;
   };
 
+  services'.podman.enable = true;
+
   tools'.mise.enable = true;
   tools'.dev.enable = true;
   shells'.fish.enable = true;
