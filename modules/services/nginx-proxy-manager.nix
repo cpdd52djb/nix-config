@@ -11,7 +11,7 @@ in {
     image = lib.mkOption {
       type = lib.types.str;
       default = "docker.io/jc21/nginx-proxy-manager:latest";
-      description = "NPM 容器镜像（podman 必须写全限定名）";
+      description = "NPM 容器镜像（写全限定名，不依赖默认仓库配置）";
     };
 
     dataDir = lib.mkOption {
@@ -26,10 +26,7 @@ in {
       inherit (cfg) image;
       autoStart = true;
 
-      # 加入 podman 自动更新（跟随 :latest 拉取新版并重建）
-      labels = {
-        "io.containers.autoupdate" = "registry";
-      };
+      # 自动更新由 docker.nix 里的 watchtower 负责
 
       ports = [
         "80:80" # HTTP

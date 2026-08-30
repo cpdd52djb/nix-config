@@ -14,7 +14,7 @@
     webui = pkgs.zashboard;
   };
 
-  services'.podman.enable = true;
+  services'.docker.enable = true;
   services'.nginx-proxy-manager.enable = true;
 
   tools'.mise.enable = true;
