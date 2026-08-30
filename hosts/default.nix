@@ -10,7 +10,7 @@
     lib.nixosSystem {
       inherit specialArgs;
       modules = [
-        (import ../modules "nixos")
+        ../modules
         (./. + "/${hostName}")
       ];
     };
