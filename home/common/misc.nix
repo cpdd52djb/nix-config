@@ -28,4 +28,9 @@
     fastfetch
     nload
   ]);
+
+  # btop 在 UI 里修改设置时会重写配置文件。
+  persist'.directories = [
+    ".config/btop"
+  ];
 }

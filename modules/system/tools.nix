@@ -27,5 +27,17 @@ in {
       lazygit
       uv
     ];
+
+    # 工具集的运行时状态：gh 账号设置与凭证、direnv 白名单、
+    # lazygit 最近仓库、uv 管理的解释器与工具。
+    hm'.persist'.directories = [
+      {
+        directory = ".config/gh";
+        mode = "0700";
+      }
+      ".local/share/direnv"
+      ".local/state/lazygit"
+      ".local/share/uv"
+    ];
   };
 }
