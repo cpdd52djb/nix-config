@@ -14,6 +14,8 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    preservation.url = "github:nix-community/preservation";
   };
 
   outputs = inputs @ {nixpkgs, ...}: let

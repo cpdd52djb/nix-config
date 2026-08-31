@@ -34,6 +34,8 @@
     espSize = "256M";
   };
 
+  storage'.persistence.enable = true;
+
   services'.smartd.enable = true;
   services'.btrfs-scrub.enable = true;
 
