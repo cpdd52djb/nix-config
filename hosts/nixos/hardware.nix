@@ -9,7 +9,6 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  hardware'.nvidia.enable = true;
   boot'.systemd-boot.enable = true;
 
   boot = {
