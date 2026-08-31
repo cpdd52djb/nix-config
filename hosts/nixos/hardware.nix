@@ -30,8 +30,8 @@
 
   storage'.disko = {
     enable = true;
-    device = "/dev/nvme0n1";
-    espSize = "1G";
+    device = "/dev/sda";
+    espSize = "256M";
   };
 
   services'.smartd.enable = true;

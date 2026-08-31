@@ -39,15 +39,6 @@
         ];
       };
 
-      "@root" = {
-        mountpoint = "/";
-        mountOptions = [
-          "compress=zstd:1"
-          "discard=async"
-          "noatime"
-        ];
-      };
-
       "@snapshots" = {
         mountpoint = "/snapshots";
         mountOptions = [
@@ -79,33 +70,46 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    disko.devices.disk.main = {
-      type = "disk";
-      device = cfg.device;
-      content = {
-        type = "gpt";
-        partitions = {
-          ESP = {
-            priority = 1;
-            size = cfg.espSize;
-            type = "EF00";
-            content = {
-              type = "filesystem";
-              format = "vfat";
-              mountpoint = "/boot";
-              extraArgs = [
-                "-n"
-                "BOOT"
-              ];
-              mountOptions = ["umask=0077"];
-            };
-          };
+    disko.devices = {
+      nodev."/" = {
+        fsType = "tmpfs";
+        mountOptions = [
+          "mode=755"
+          "nodev"
+          "nosuid"
+          "relatime"
+          "size=512M"
+        ];
+      };
 
-          root = {
-            priority = 2;
-            size = "100%";
-            type = "8300";
-            content = btrfsContent;
+      disk.main = {
+        type = "disk";
+        device = cfg.device;
+        content = {
+          type = "gpt";
+          partitions = {
+            ESP = {
+              priority = 1;
+              size = cfg.espSize;
+              type = "EF00";
+              content = {
+                type = "filesystem";
+                format = "vfat";
+                mountpoint = "/boot";
+                extraArgs = [
+                  "-n"
+                  "BOOT"
+                ];
+                mountOptions = ["umask=0077"];
+              };
+            };
+
+            root = {
+              priority = 2;
+              size = "100%";
+              type = "8300";
+              content = btrfsContent;
+            };
           };
         };
       };
